@@ -1,6 +1,6 @@
 import { getExpenses } from "../../api";
 import { FormEvent, useContext, useEffect, useState } from "react";
-import { Button } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@nextui-org/react";
 import { StoreContext } from "../../providers/expenses.provider";
 
 export const HomePage = () => {
@@ -32,7 +32,6 @@ export const HomePage = () => {
   return (
     <div style={{ color: "black" }}>
       <form onSubmit={onSubmit}>
-        <p style={{ color: "black" }}>Home</p>
         {/* <Input
           label="Search"
           value={search}
@@ -43,11 +42,17 @@ export const HomePage = () => {
       <ul>
         {items &&
           items.map((expense) => (
-            <li key={expense.id}>
-              <div style={{ margin: 20, backgroundColor: "grey" }}>
-                <p>Id: {expense.id}</p>
-                <p>Merchant: {expense.merchant}</p>
-              </div>
+            <li key={expense.id} style={{ marginBottom: 10 }}>
+              <Card>
+                <CardBody>
+                  <div>
+                    <p>{expense.merchant}</p>
+                  </div>
+                  <p>
+                    {expense.amount} {expense.currency}
+                  </p>
+                </CardBody>
+              </Card>
             </li>
           ))}
       </ul>
