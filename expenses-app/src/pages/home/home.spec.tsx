@@ -12,14 +12,8 @@ jest.mock("../../api", () => ({
   getExpenses: async () => [
     {
       id: "expense-id",
-      name: "Expense name",
-      address: {
-        addressLine1: "AL1",
-        postcode: "PS3311",
-        city: "London",
-        country: "GB",
-      },
-      img: "http://img.jpg",
+      merchant: "Expense name",
+      
     },
   ],
 }));
@@ -44,7 +38,7 @@ describe("<HomePage />", () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByText("Expense name")).toBeDefined();
+        expect(screen.findByText("Expense name")).toBeInTheDocument();
       });
     });
   });

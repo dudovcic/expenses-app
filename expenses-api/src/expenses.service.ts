@@ -32,4 +32,9 @@ export class ExpensesService {
 
     return this.expenseRepository.save(expense);
   }
+  async deleteExpense(id: string): Promise<number> {
+    const result = await this.expenseRepository.delete({ id });
+
+    return result.raw;
+  }
 }

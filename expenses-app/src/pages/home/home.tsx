@@ -1,4 +1,4 @@
-import { getExpenses } from "../../api";
+import { getExpenses, deleteExpense as delExpense } from "../../api";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { StoreContext } from "../../providers/expenses.provider";
@@ -9,10 +9,10 @@ export const HomePage = () => {
   const { items, setItems } = useContext(StoreContext);
 
   useEffect(() => {
-    onSubmit();
+    fetchExpenses();
   }, []);
 
-  const onSubmit = async (e?: FormEvent) => {
+  const fetchExpenses = async (e?: FormEvent) => {
     e?.preventDefault();
     setLoading(true);
 
@@ -23,15 +23,26 @@ export const HomePage = () => {
     setLoading(false);
   };
 
+  const deleteExpense = (id: string) => async (e?: FormEvent) => {
+    e?.preventDefault();
+    setLoading(true);
+
+    await delExpense(id);
+
+    setItems(items.filter((itm) => itm.id !== id));
+
+    setLoading(false);
+  };
+
   const onPageChange = (page: number) => () => {
     setPage(page);
 
-    onSubmit();
+    fetchExpenses();
   };
 
   return (
     <div style={{ color: "black" }}>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={fetchExpenses}>
         {/* <Input
           label="Search"
           value={search}
@@ -42,7 +53,7 @@ export const HomePage = () => {
       <ul>
         {items &&
           items.map((expense) => (
-            <li key={expense.id} style={{ marginBottom: 10 }}>
+            <li key={expense.id} className="mb-2">
               <Card>
                 <CardBody>
                   <div>
@@ -52,6 +63,7 @@ export const HomePage = () => {
                     {expense.amount} {expense.currency}
                   </p>
                 </CardBody>
+                <Button onClick={deleteExpense(expense.id)}>Delete</Button>
               </Card>
             </li>
           ))}

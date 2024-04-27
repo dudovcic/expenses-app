@@ -1,5 +1,5 @@
 export interface ExpenseType {
-  id: number;
+  id: string;
   merchant: string;
   amount: number;
   currency: "GBP";

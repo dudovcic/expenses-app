@@ -40,3 +40,13 @@ export const addExpense = async (data: AddExpenseBody) => {
   });
   return res.json();
 };
+
+export const deleteExpense = async (id: string) => {
+  const res = await fetch(`${BASE_URL}/expenses/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return res.json();
+};

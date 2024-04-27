@@ -12,14 +12,11 @@ function App() {
     <NextUIProvider>
       <StoreContextProvider>
         <BrowserRouter>
-          <div style={{ textAlign: "center" }}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/expense/:id" element={<ExpensePage />} />
-              <Route path="/expense/add" element={<AddExpensePage />} />
-              {/* <Route element={<NotFound />} /> */}
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/expense/:id" element={<ExpensePage />} />
+            <Route path="/expense/add" element={<AddExpensePage />} />
+          </Routes>
         </BrowserRouter>
       </StoreContextProvider>
     </NextUIProvider>

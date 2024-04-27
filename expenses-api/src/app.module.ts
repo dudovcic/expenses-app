@@ -4,6 +4,7 @@ import { ExpensesService } from './expenses.service';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from './config';
+import { DeleteExpenseCommandHandler } from './expenses/delete-expense';
 import { AddExpenseCommandHandler } from './expenses/add-expense';
 import { ListExpensesCommandHandler } from './expenses/list-expenses';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -34,6 +35,7 @@ import { UsersService } from './users.service';
     ExpensesService,
     ListExpensesCommandHandler,
     AddExpenseCommandHandler,
+    DeleteExpenseCommandHandler,
     ListUsersCommandHandler,
   ],
 })

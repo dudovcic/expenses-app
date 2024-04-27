@@ -26,7 +26,7 @@ export class MainSeeder implements Seeder {
     await Promise.all(
       users.map(async (user) => {
         const expenses = await Promise.all(
-          Array(3)
+          Array(17)
             .fill('')
             .map(async () => {
               console.log('user id', user.id);
@@ -36,7 +36,6 @@ export class MainSeeder implements Seeder {
               return made;
             }),
         );
-        console.log('expenses...', expenses);
         await expensesRepository.save(expenses);
       }),
     );

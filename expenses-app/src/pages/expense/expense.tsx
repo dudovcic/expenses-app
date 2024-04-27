@@ -18,13 +18,6 @@ export const ExpensePage = () => {
             {expense?.currency}, {expense?.amount},{" "}
           </small>
         </CardHeader>
-        {/* <CardBody className="overflow-visible py-2">
-          <Image
-            alt="Card background"
-            className="object-cover rounded-xl"
-            src={expense?.img}
-          />
-        </CardBody> */}
       </Card>
     </>
   );

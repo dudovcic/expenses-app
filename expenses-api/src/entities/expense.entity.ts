@@ -1,5 +1,5 @@
 import BaseEntity from './base.entity';
-import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, JoinColumn, ManyToOne } from 'typeorm';
 import { UserEntity } from './user.entity';
 
 @Entity()
@@ -14,6 +14,7 @@ export class ExpenseEntity extends BaseEntity {
   date: Date;
 
   @Column({ unique: false })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne((_type) => UserEntity)
   @JoinColumn()
   user_id: string;
